@@ -9,14 +9,17 @@ class MasterClient extends GameClient {
   }
 
   createGame() {
-    // push GameCreate event?
     this.game = new Game(this, this.players);
   }
 
   startGame(leaderPosition) {
-    // push GameStart event
-    const position = leaderPosition || Math.floor(Math.random() * this.players.length);
+    const numPlayers = this.players.length;
+    const position = leaderPosition || Math.floor(Math.random() * numPlayers);
 
+    this.push({
+      name: 'GameStart',
+      data: { numPlayers }
+    });
     this.game.start(position);
   }
 
@@ -24,9 +27,10 @@ class MasterClient extends GameClient {
     // clear out db events
   }
 
-  onTeamChosen() {
+  onTeamChosen({ team }) {
     super.onTeamChosen(arguments);
-    // push TeamVote event
+    this.game.setTeam(team);
+    this.push({ name: 'TeamVote' });
   }
 
   onVote({ accept }) {

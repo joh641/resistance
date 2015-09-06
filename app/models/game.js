@@ -70,6 +70,14 @@ class Game {
     return this.resistanceWins === 3 || this.spyWins === 3;
   }
 
+  get roles() {
+    return this.players.reduce((roles, player) => {
+      roles[player.number] = player.role;
+
+      return roles;
+    }, {});
+  }
+
   start(leaderPosition) {
     this.setup();
     this.setLeader((leaderPosition - 1) % this.numPlayers);
@@ -98,17 +106,31 @@ class Game {
     roles = shuffle(roles);
 
     this.players.forEach((player, idx) => {
-      player.role = roles[idx] ? 'SPY' : 'RESISTANCE';
+      const role = roles[idx] ? 'SPY' : 'RESISTANCE';
+
+      player.role = role;
+
+      this.push({
+        name: 'SetRole',
+        data: {
+          playerNumber: idx,
+          role
+        }
+      });
     });
     // assign images too
-    // push SetRole events
-    // push SpiesReveal event
+
+    this.push({ name: 'SpiesReveal' });
   }
 
   setLeader(position) {
     this.leaderPosition = position;
     this.leader = this.players[position];
-    // push LeaderChange event
+
+    this.push({
+      name: 'LeaderChange',
+      data: { leaderPosition: position }
+    });
   }
 
   enterMissionPhase() {
@@ -121,13 +143,22 @@ class Game {
     this.receivedVotes = this.acceptCount = 0;
 
     this.moveLeaderToken();
-    // push BuildTeamEvent
+    this.push({
+      name: 'BuiltTeam',
+      data: { numPlayers: this.mission.players }
+    });
   }
 
   moveLeaderToken() {
     const newLeaderPosition = (this.leaderPosition + 1) % this.numPlayers;
 
     this.setLeader(newLeaderPosition);
+  }
+
+  setTeam(players) {
+    const team = this.team = {};
+
+    players.forEach(playerNumber => team[playerNumber] = this.players[playerNumber]);
   }
 
   recordVote(accept) {
@@ -144,12 +175,18 @@ class Game {
 
   calculateVotingResults() {
     const threshold = Math.ceil(this.numPlayers / 2);
-    const success = this.acceptCount >= threshold;
+    const accepted = this.acceptCount >= threshold;
 
-    // push VotingResults event
+    this.push({
+      name: 'VotingResults',
+      data: { accepted }
+    });
 
-    if (success) {
-      // push ConductMission event
+    if (accepted) {
+      this.push({
+        name: 'ConductMission',
+        data: { team: this.team }
+      });
     } else {
       this.voteFailed();
     }
@@ -159,7 +196,13 @@ class Game {
     const failedVotes = this.failedVotes += 1;
 
     if (failedVotes === 5) {
-      // push GameOver event
+      this.push({
+        name: 'GameOver',
+        data: {
+          winners: 'SPIES',
+          roles: this.roles
+        }
+      });
     } else {
       this.enterTeamBuildingPhase();
     }
@@ -178,10 +221,25 @@ class Game {
   }
 
   calculateMissionResults() {
-    const threshold = this.mission.fails;
-    const success = this.failCount < threshold;
+    let numFails = this.mission.fails;
+    let numSuccesses = this.mission.players - numFails;
+    let missionCards = [];
+    const success = this.failCount < numFails;
 
-    // push MissionResults
+    while (numFails-- > 0) {
+      missionCards.push(0);
+    }
+
+    while (numSuccesses-- > 0) {
+      missionCards.push(1);
+    }
+
+    missionCards = shuffle(missionCards);
+
+    this.push({
+      name: 'MissionResults',
+      data: { success, missionCards }
+    });
 
     if (success) {
       this.resistanceWins += 1;
@@ -190,8 +248,15 @@ class Game {
     }
 
     if (this.gameOver) {
-      // push GameOver event
+      this.push({
+        name: 'GameOver',
+        data: {
+          winners: this.resistanceWins > this.spyWins ? 'RESISTANCE' : 'SPIES',
+          roles: this.roles
+        }
+      });
     } else {
+      this.missionNumber += 1;
       this.enterMissionPhase();
     }
   }

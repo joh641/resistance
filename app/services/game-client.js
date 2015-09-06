@@ -27,14 +27,18 @@ export default class GameClient {
     eventHandler(data);
   }
 
+  push(event) {
+    this.db.push(event);
+  }
+
   signIn() {
     let playerNumber = Number(document.cookie);
 
     if (isNaN(playerNumber)) {
       document.cookie = playerNumber = this.playerNumber = this.players.length;
 
-      this.db.push({
-        eventName: 'PlayerSignIn',
+      this.push({
+        name: 'PlayerSignIn',
         data: {
           number: playerNumber,
           name: prompt('Please enter your name')
@@ -45,17 +49,17 @@ export default class GameClient {
     }
   }
 
-  onPlayerSignIn({ number, name }) {
+  onPlayerSignIn({ playerNumber, name }) {
     const players = this.players;
 
-    if (players[number]) { return; }
+    if (players[playerNumber]) { return; }
 
-    players.push(new Player(number, name));
+    players.push(new Player(playerNumber, name));
     // add player icon / info to room display
   }
 
-  onSetRole({ number, role }) {
-    if (number !== this.playerNumber) { return; }
+  onSetRole({ playerNumber, role }) {
+    if (playerNumber !== this.playerNumber) { return; }
     // update player loyalty card
   }
 
@@ -69,7 +73,7 @@ export default class GameClient {
     // highlight current mission
   }
 
-  onBuildTeam({ missionNo }) {
+  onBuildTeam({ numPlayers }) {
     // if leader !== currentPlayer || this.READ_ONLY { return; }
     // allow selection of team (clicking images, submit)
     // push TeamChosen event onSubmit
@@ -89,7 +93,7 @@ export default class GameClient {
     // record vote for revealing later
   }
 
-  onVotingResults({ result }) {
+  onVotingResults({ accepted }) {
     // display each person's votes, hide after a while?
     // clear out stored votes?
   }
@@ -100,13 +104,13 @@ export default class GameClient {
     // push MissionCardChosen event onSubmit
   }
 
-  onMissionResults({ result, missionCards }) {
+  onMissionResults({ success, missionCards }) {
     // display mission cards face up
     // display resistance/spy win token
     // unhighlight team after a while
   }
 
-  onGameStart({ missions, numSpies, players, leaderPosition }) {
+  onGameStart({ numPlayers }) {
     // setup board
   }
 
