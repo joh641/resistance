@@ -1,0 +1,200 @@
+import { shuffle } from 'lib/utils';
+
+const GAMES = {
+  5: { resistance: 3, spies: 2,
+    missions: {
+      1: { players: 2, fails: 1 },
+      2: { players: 3, fails: 1 },
+      3: { players: 2, fails: 1 },
+      4: { players: 3, fails: 1 },
+      5: { players: 3, fails: 1 }
+    }
+  },
+  6: { resistance: 4, spies: 2,
+    missions: {
+      1: { players: 2, fails: 1 },
+      2: { players: 3, fails: 1 },
+      3: { players: 4, fails: 1 },
+      4: { players: 3, fails: 1 },
+      5: { players: 4, fails: 1 }
+    }
+  },
+  7: { resistance: 4, spies: 3,
+    missions: {
+      1: { players: 2, fails: 1 },
+      2: { players: 3, fails: 1 },
+      3: { players: 3, fails: 1 },
+      4: { players: 4, fails: 2 },
+      5: { players: 4, fails: 1 }
+    }
+  },
+  8: { resistance: 5, spies: 3,
+    missions: {
+      1: { players: 3, fails: 1 },
+      2: { players: 4, fails: 1 },
+      3: { players: 4, fails: 1 },
+      4: { players: 5, fails: 2 },
+      5: { players: 5, fails: 1 }
+    }
+  },
+  9: { resistance: 6, spies: 3,
+    missions: {
+      1: { players: 3, fails: 1 },
+      2: { players: 4, fails: 1 },
+      3: { players: 4, fails: 1 },
+      4: { players: 5, fails: 2 },
+      5: { players: 5, fails: 1 }
+    }
+  },
+  10: { resistance: 6, spies: 4,
+    missions: {
+      1: { players: 3, fails: 1 },
+      2: { players: 4, fails: 1 },
+      3: { players: 4, fails: 1 },
+      4: { players: 5, fails: 2 },
+      5: { players: 5, fails: 1 }
+    }
+  }
+};
+
+class Game {
+  constructor(client, players) {
+    const numPlayers = this.numPlayers = players.length;
+
+    this.client = client;
+    this.players = players;
+    this.schema = GAMES[numPlayers];
+  }
+
+  get gameOver() {
+    return this.resistanceWins === 3 || this.spyWins === 3;
+  }
+
+  start(leaderPosition) {
+    this.setup();
+    this.setLeader((leaderPosition - 1) % this.numPlayers);
+    this.enterMissionPhase();
+  }
+
+  setup() {
+    const { resistance, spies, missions } = this.schema;
+
+    this.missions = missions;
+    this.numResistance = resistance;
+    this.numSpies = spies;
+    this.missionNumber = 1;
+    this.resistanceWins = this.spyWins = 0;
+
+    this.assignRoles();
+  }
+
+  assignRoles() {
+    let roles = [];
+    let { numResistance, numSpies } = this;
+
+    while (numResistance--) { roles.push(0); }
+    while (numSpies--) { roles.push(1); }
+
+    roles = shuffle(roles);
+
+    this.players.forEach((player, idx) => {
+      player.role = roles[idx] ? 'SPY' : 'RESISTANCE';
+    });
+    // assign images too
+    // push SetRole events
+    // push SpiesReveal event
+  }
+
+  setLeader(position) {
+    this.leaderPosition = position;
+    this.leader = this.players[position];
+    // push LeaderChange event
+  }
+
+  enterMissionPhase() {
+    this.failedVotes = this.receivedMissionCards = this.failCount = 0;
+    this.mission = this.missions[this.missionNumber];
+    this.enterTeamBuildingPhase();
+  }
+
+  enterTeamBuildingPhase() {
+    this.receivedVotes = this.acceptCount = 0;
+
+    this.moveLeaderToken();
+    // push BuildTeamEvent
+  }
+
+  moveLeaderToken() {
+    const newLeaderPosition = (this.leaderPosition + 1) % this.numPlayers;
+
+    this.setLeader(newLeaderPosition);
+  }
+
+  recordVote(accept) {
+    const voteCount = this.receivedVotes += 1;
+
+    if (accept) {
+      this.acceptCount += 1;
+    }
+
+    if (voteCount === this.numPlayers) {
+      this.calculateVotingResults();
+    }
+  }
+
+  calculateVotingResults() {
+    const threshold = Math.ceil(this.numPlayers / 2);
+    const success = this.acceptCount >= threshold;
+
+    // push VotingResults event
+
+    if (success) {
+      // push ConductMission event
+    } else {
+      this.voteFailed();
+    }
+  }
+
+  voteFailed() {
+    const failedVotes = this.failedVotes += 1;
+
+    if (failedVotes === 5) {
+      // push GameOver event
+    } else {
+      this.enterTeamBuildingPhase();
+    }
+  }
+
+  recordMissionCard(success) {
+    const missionCardCount = this.receivedMissionCards += 1;
+
+    if (!success) {
+      this.failCount += 1;
+    }
+
+    if (missionCardCount === this.mission.players) {
+      this.calculateMissionResults();
+    }
+  }
+
+  calculateMissionResults() {
+    const threshold = this.mission.fails;
+    const success = this.failCount < threshold;
+
+    // push MissionResults
+
+    if (success) {
+      this.resistanceWins += 1;
+    } else {
+      this.spyWins += 1;
+    }
+
+    if (this.gameOver) {
+      // push GameOver event
+    } else {
+      this.enterMissionPhase();
+    }
+  }
+}
+
+export default Game;
