@@ -1,0 +1,6 @@
+{
+  "extends": "zendesk",
+  "rules": {
+    "no-implicit-coercion": 0
+  }
+}
