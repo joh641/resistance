@@ -24,7 +24,7 @@ export default class GameClient {
   handleEvent({ name, data }) {
     const eventHandler = this[`on${name}`];
 
-    eventHandler(data);
+    if (eventHandler) { eventHandler(data); }
   }
 
   push(event) {
