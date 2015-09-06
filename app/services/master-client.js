@@ -8,12 +8,12 @@ class MasterClient extends GameClient {
     this.game = null;
   }
 
-  createGame() {
-    this.game = new Game(this, this.players);
+  createGame(players) {
+    this.game = new Game(this, players);
   }
 
   startGame(leaderPosition) {
-    const numPlayers = this.players.length;
+    const numPlayers = this.game.players.length;
     const position = leaderPosition || Math.floor(Math.random() * numPlayers);
 
     this.push({

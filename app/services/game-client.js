@@ -32,34 +32,34 @@ export default class GameClient {
   }
 
   signIn() {
-    let playerNumber = Number(document.cookie);
+    let id = Number(document.cookie);
 
-    if (isNaN(playerNumber)) {
-      document.cookie = playerNumber = this.playerNumber = this.players.length;
+    if (isNaN(id)) {
+      document.cookie = id = this.id = this.players.length;
 
       this.push({
         name: 'PlayerSignIn',
         data: {
-          number: playerNumber,
+          id,
           name: prompt('Please enter your name')
         }
       });
     } else {
-      this.playerNumber = playerNumber;
+      this.id = id;
     }
   }
 
-  onPlayerSignIn({ playerNumber, name }) {
+  onPlayerSignIn({ id, name }) {
     const players = this.players;
 
-    if (players[playerNumber]) { return; }
+    if (players[id]) { return; }
 
-    players.push(new Player(playerNumber, name));
+    players.push(new Player(id, name));
     // add player icon / info to room display
   }
 
-  onSetRole({ playerNumber, role }) {
-    if (playerNumber !== this.playerNumber) { return; }
+  onSetRole({ id, role }) {
+    if (id !== this.id) { return; }
     // update player loyalty card
   }
 
@@ -67,9 +67,9 @@ export default class GameClient {
     // display spies reveal phase for a while
   }
 
-  onLeaderChange({ leaderPosition }) {
+  onLeaderChange({ id }) {
     // move leader token
-    // store leaderPosition
+    // store id
     // highlight current mission
   }
 

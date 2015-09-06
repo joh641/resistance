@@ -113,7 +113,7 @@ class Game {
       this.push({
         name: 'SetRole',
         data: {
-          playerNumber: idx,
+          id: idx,
           role
         }
       });
@@ -124,12 +124,13 @@ class Game {
   }
 
   setLeader(position) {
+    const leader = this.leader = this.players[position];
+
     this.leaderPosition = position;
-    this.leader = this.players[position];
 
     this.push({
       name: 'LeaderChange',
-      data: { leaderPosition: position }
+      data: { id: leader.number }
     });
   }
 
@@ -158,7 +159,7 @@ class Game {
   setTeam(players) {
     const team = this.team = {};
 
-    players.forEach(playerNumber => team[playerNumber] = this.players[playerNumber]);
+    players.forEach(id => team[id] = true);
   }
 
   recordVote(accept) {

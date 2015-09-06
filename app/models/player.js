@@ -1,6 +1,6 @@
 export default class Player {
-  constructor(number, name) {
-    this.number = number;
+  constructor(id, name) {
+    this.id = id;
     this.name = name;
     this.role = null;
   }
