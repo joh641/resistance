@@ -24,7 +24,7 @@ class MasterClient extends GameClient {
   }
 
   endGame() {
-    // clear out db events
+    this.db.set([]);
   }
 
   onTeamChosen({ team }) {

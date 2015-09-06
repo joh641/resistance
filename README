@@ -98,6 +98,8 @@ get latest event timestamp, ignore prompt events less than?
 or set push capability off until all messages loaded
 
 future: shared stream for some events, but clients also have a separate stream between them and master
+gameroom stream
+user online status stream
 
 // READ
 // their role
