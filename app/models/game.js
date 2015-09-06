@@ -72,7 +72,10 @@ class Game {
 
   get roles() {
     return this.players.reduce((roles, player) => {
-      roles[player.number] = player.role;
+      roles[player.number] = {
+        role: player.role,
+        imageNumber: player.imageNumber
+      };
 
       return roles;
     }, {});
@@ -106,19 +109,31 @@ class Game {
     roles = shuffle(roles);
 
     this.players.forEach((player, idx) => {
-      const role = roles[idx] ? 'SPY' : 'RESISTANCE';
+      let role;
+      let imageNumber;
+
+      if (roles[idx]) {
+        role = 'SPY';
+        numSpies += 1;
+        imageNumber = numSpies + 1;
+      } else {
+        role = 'RESISTANCE';
+        numResistance += 1;
+        imageNumber = numResistance + 1;
+      }
 
       player.role = role;
+      player.imageNumber = imageNumber;
 
       this.push({
         name: 'SetRole',
         data: {
           id: idx,
-          role
+          role,
+          imageNumber
         }
       });
     });
-    // assign images too
 
     this.push({ name: 'SpiesReveal' });
   }

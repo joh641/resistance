@@ -3,5 +3,6 @@ export default class Player {
     this.id = id;
     this.name = name;
     this.role = null;
+    this.imageNumber = null;
   }
 }
