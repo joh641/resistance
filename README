@@ -100,6 +100,65 @@ or set push capability off until all messages loaded
 future: shared stream for some events, but clients also have a separate stream between them and master
 gameroom stream
 user online status stream
+game state instead of playing back events
+
+UI
+game lobby, watch games, chatroom/voice
+picking leader in chat lobby, starting user?, next starting leader?
+hi -> chat lobby -> game
+chat lobby, see all users, able to select, once min number of players selected, start game is enabled
+
+user avatars
+v1 => choose from x avatars
+v1 => where to put avatars? avatar circle with cards above / facing toward table
+
+roles
+v1 => cards fade in left of you clockwise
+v1 => once it reaches you cycle, click and cycle through images
+v1 => or flip over and show your role
+v2 => deal out cards animation
+
+can click to flip role between hidden and not hidden
+leader token already there
+
+call to action for selecting team, all other stuff surrounding blurs
+google initials circle
+select your team text above game board
+below, team: and appropriate number of circles based on round
+circles have pluses, click plus, everything except avatars blurs
+hover on person, giant x
+or x circle on top right of avatar
+gun token near team members
+
+vote, vote tokens appear near avatar area
+section slides out from mission board, yes or no tokens, confirm, slides back
+vote tokens come out from avatar circles
+v2 => votes collect in front of you
+strip appears on gameboard, gray out above and below, vote results, disappears
+vote tokens disappear
+vote circle filled in if mission failed, cleared if passed
+
+mission cards fade in next to people in team
+slide down mission success or fail if user in team
+all cards slide into middle
+flip over
+strip display results
+mission cards disappear
+round circle filled in with winner
+
+change leader announcement after failed vote or mission result
+leader token fades, fades in to next leader
+
+gameover
+make role cards bigger, avatar goes to some corner
+flip over role cards
+you win or you lose message
+fade out for play again or exit
+
+http://games.asobrain.com/
+https://www.youtube.com/watch?v=6AMOVtxwtHA
+http://www.theresistanceonline.com/
+https://github.com/cashto/resistance
 
 // READ
 // their role
