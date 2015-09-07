@@ -268,3 +268,29 @@ https://github.com/cashto/resistance
   </div>
 </body>
 </html>
+
+.player {
+  &__icon {
+    border: solid;
+    border-radius: 50%;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+  }
+
+  &__role {
+    border: solid;
+    height: 30px;
+    position: absolute;
+    width: 20px;
+  }
+}
+
+.game__board {
+  border: solid;
+  height: 200px;
+  left: 33%;
+  position: absolute;
+  top: 33%;
+  width: 300px;
+}
