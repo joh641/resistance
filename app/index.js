@@ -12,12 +12,13 @@ switch (sha256.hash(password)) {
     gameClient = new GameClient('https://shining-fire-2823.firebaseio.com/');
     break;
   case MASTER:
-    window.gameClient = gameClient = new MasterClient('https://shining-fire-2823.firebaseio.com/');
+    gameClient = new MasterClient('https://shining-fire-2823.firebaseio.com/');
     break;
 }
 
-if (gameClient) { gameClient.signIn(); }
-
-window.onbeforeunload = () => {
-  return 'La Resistance';
-};
+if (gameClient) {
+  window.gameClient = gameClient;
+  window.onbeforeunload = () => {
+    return 'La Resistance';
+  };
+}

@@ -9,6 +9,7 @@ export default class GameClient {
     db.once('value', snapshot => {
       this.init(snapshot.val() || {});
       db.on('child_added', msg => this.handleEvent(msg.val()));
+      this.signIn();
     });
   }
 
