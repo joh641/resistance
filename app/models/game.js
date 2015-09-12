@@ -83,7 +83,7 @@ class Game {
 
   start(leaderPosition) {
     this.setup();
-    this.setLeader((leaderPosition - 1) % this.numPlayers);
+    this.setLeader(leaderPosition % this.numPlayers);
     this.enterMissionPhase();
   }
 
