@@ -72,7 +72,7 @@ class Game {
 
   get roles() {
     return this.players.reduce((roles, player) => {
-      roles[player.number] = {
+      roles[player.id] = {
         role: player.role,
         imageNumber: player.imageNumber
       };
@@ -149,7 +149,7 @@ class Game {
 
     this.push({
       name: 'LeaderChange',
-      data: { id: leader.number }
+      data: { id: leader.id }
     });
   }
 
