@@ -87,6 +87,10 @@ class Game {
     this.enterMissionPhase();
   }
 
+  push(event) {
+    this.client.push(event);
+  }
+
   setup() {
     const { resistance, spies, missions } = this.schema;
 
