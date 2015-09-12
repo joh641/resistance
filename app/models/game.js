@@ -162,7 +162,6 @@ class Game {
   enterTeamBuildingPhase() {
     this.receivedVotes = this.acceptCount = 0;
 
-    this.moveLeaderToken();
     this.push({
       name: 'BuiltTeam',
       data: { numPlayers: this.mission.players }
@@ -224,6 +223,7 @@ class Game {
         }
       });
     } else {
+      this.moveLeaderToken();
       this.enterTeamBuildingPhase();
     }
   }
@@ -277,6 +277,7 @@ class Game {
       });
     } else {
       this.missionNumber += 1;
+      this.moveLeaderToken();
       this.enterMissionPhase();
     }
   }
