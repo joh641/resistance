@@ -163,7 +163,7 @@ class Game {
     this.receivedVotes = this.acceptCount = 0;
 
     this.push({
-      name: 'BuiltTeam',
+      name: 'BuildTeam',
       data: { numPlayers: this.mission.players }
     });
   }
