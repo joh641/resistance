@@ -19,5 +19,5 @@ switch (sha256.hash(password)) {
 if (gameClient) { gameClient.signIn(); }
 
 window.onbeforeunload = () => {
-  return 'La Résistance';
+  return 'La Resistance';
 };
