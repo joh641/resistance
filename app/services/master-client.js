@@ -14,7 +14,9 @@ class MasterClient extends GameClient {
 
   startGame(leaderPosition) {
     const numPlayers = this.game.players.length;
-    const position = leaderPosition || Math.floor(Math.random() * numPlayers);
+    const leader = Number(leaderPosition);
+    const isNum = isNaN(leader);
+    const position = isNum ? leader : Math.floor(Math.random() * numPlayers);
 
     this.push({
       name: 'GameStart',
