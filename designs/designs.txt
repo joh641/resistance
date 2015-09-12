@@ -248,20 +248,20 @@ https://github.com/cashto/resistance
       <div class="game__area">
         <div class="game__table">
           <div class="game__table__top">
-            <div class="message"></div>
+            <div class="game__table__top__display"></div>
           </div>
           <div class="game__table__middle">
             <div class="game__table__middle__strip"></div>
-            <div class="game__board__area">
-              <div class="game__board"></div>
-              <div class="results"</div>
+            <div class="game__board">
+              <div class="game__board__panel"></div>
+              <div class="game__board__results"</div>
             </div>
           </div>
           <div class="game__table__bottom">
-            <div class="results"></div>
+            <div class="game__table__bottom__results"></div>
           </div>
         </div>
-        <div class="decision-area"></div>
+        <div class="game__table__decision-panel"></div>
       </div>
     </div>
     <div class="chat-panel"></div>
@@ -269,28 +269,96 @@ https://github.com/cashto/resistance
 </body>
 </html>
 
+.screen {
+
+}
+
 .player {
   &__icon {
-    border: solid;
-    border-radius: 50%;
-    height: 50px;
-    position: absolute;
-    width: 50px;
+
   }
 
   &__role {
-    border: solid;
-    height: 30px;
-    position: absolute;
-    width: 20px;
+    &--face-down {
+
+    }
+
+    &--resistance {
+
+    }
+
+    &--spy {
+
+    }
+  }
+
+  &__leader-token {
+    &--hidden {
+
+    }
+  }
+
+  &__vote {
+    &--face-down {
+
+    }
+
+    &--accept {
+
+    }
+
+    &--reject {
+
+    }
+  }
+
+  &__mission-card {
+    &--hidden {
+
+    }
   }
 }
 
-.game__board {
-  border: solid;
-  height: 200px;
-  left: 33%;
-  position: absolute;
-  top: 33%;
-  width: 300px;
+.game {
+  &__area {
+
+  }
+
+  &__board {
+    &__panel {
+
+    }
+
+    &__results {
+
+    }
+  }
+
+  &__table {
+    &__top {
+      &__display {
+
+      }
+    }
+
+    &__middle {
+      &__strip {
+
+      }
+    }
+
+    &__bottom {
+      &__results {
+
+      }
+    }
+
+    &__decision-panel {
+
+    }
+  }
+}
+
+.chat-panel {
+
 }
