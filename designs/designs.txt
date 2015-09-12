@@ -261,7 +261,17 @@ https://github.com/cashto/resistance
             <div class="game__table__bottom__results"></div>
           </div>
         </div>
-        <div class="game__table__decision-panel"></div>
+        <div class="game__table__decision-panel">
+          <div class="vote-tokens">
+            <div class="vote-token vote-token--accept"></div>
+            <div class="vote-token vote-token--reject"></div>
+          </div>
+          <div class="mission-cards">
+            <div class="mission-card mission-card--success"></div>
+            <div class="mission-card mission-card--fail"></div>
+          </div>
+          <button class="submit" disabled="true">Submit</button>
+        </div>
       </div>
     </div>
     <div class="chat-panel"></div>
@@ -354,7 +364,57 @@ https://github.com/cashto/resistance
     }
 
     &__decision-panel {
+      &--open {
 
+      }
+
+      &--vote {
+        .vote-tokens {
+
+        }
+      }
+
+      .vote-tokens {
+        .vote-token {
+          &--accept {
+
+          }
+
+          &--reject {
+
+          }
+
+          &--selected {
+
+          }
+        }
+      }
+
+      &--mission {
+        .mission-cards {
+
+        }
+      }
+
+      .mission-cards {
+        .mission-card {
+          &--success {
+
+          }
+
+          &--fail {
+
+          }
+
+          &--selected {
+
+          }
+        }
+      }
+
+      .submit {
+
+      }
     }
   }
 }
