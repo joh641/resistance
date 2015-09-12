@@ -80,6 +80,7 @@ export default class GameClient {
     // if leader !== currentPlayer || this.READ_ONLY { return; }
     // allow selection of team (clicking images, submit)
     // push TeamChosen event onSubmit
+    // this.push({ name: 'TeamChosen', data: { team: [] } });
   }
 
   onTeamChosen({ team }) {
@@ -90,6 +91,7 @@ export default class GameClient {
     // if (this.READ_ONLY) { return; }
     // display vote tokens (clicking images, submit)
     // push Vote event onSubmit
+    // this.push({ name: 'Vote', data: { accept: Boolean } });
   }
 
   onVote({ player, accept }) {
@@ -105,6 +107,7 @@ export default class GameClient {
     // if (!team[playerNo] || this.READ_ONLY) { return; }
     // display mission cards (clicking images, submit)
     // push MissionCardChosen event onSubmit
+    // this.push({ name: 'MissionCardChosen', data: { success: Boolean } });
   }
 
   onMissionResults({ success, missionCards }) {
