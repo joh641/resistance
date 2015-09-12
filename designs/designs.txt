@@ -239,7 +239,7 @@ https://github.com/cashto/resistance
       <div class="player player--current">
         <div class="player__icon"></div>
         <div class="player__role player__role--spy"></div>
-        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__leader-token"></div>
         <div class="player__vote player__vote--accept player__vote--face-down"></div>
         <div class="player__vote player__vote--reject player__vote--face-down"></div>
         <div class="player__mission-card player__mission-card--hidden"></div>

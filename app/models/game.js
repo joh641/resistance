@@ -117,11 +117,11 @@ class Game {
       let imageNumber;
 
       if (roles[idx]) {
-        role = 'SPY';
+        role = 'spy';
         numSpies += 1;
         imageNumber = numSpies + 1;
       } else {
-        role = 'RESISTANCE';
+        role = 'resistance';
         numResistance += 1;
         imageNumber = numResistance + 1;
       }
@@ -218,7 +218,7 @@ class Game {
       this.push({
         name: 'GameOver',
         data: {
-          winners: 'SPIES',
+          winners: 'spies',
           roles: this.roles
         }
       });
@@ -271,7 +271,7 @@ class Game {
       this.push({
         name: 'GameOver',
         data: {
-          winners: this.resistanceWins > this.spyWins ? 'RESISTANCE' : 'SPIES',
+          winners: this.resistanceWins > this.spyWins ? 'resistance' : 'spies',
           roles: this.roles
         }
       });
