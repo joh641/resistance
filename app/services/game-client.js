@@ -37,7 +37,7 @@ export default class GameClient {
     let id = Number(document.cookie || NaN);
 
     if (isNaN(id)) {
-      document.cookie = id = this.id = this.players.length;
+      document.cookie = id = this.id = this.players.length + 1;
 
       this.push({
         name: 'PlayerSignIn',
@@ -54,7 +54,7 @@ export default class GameClient {
   onPlayerSignIn({ id, name }) {
     const players = this.players;
 
-    if (players[id]) { return; }
+    if (players[id - 1]) { return; }
 
     players.push(new Player(id, name));
     // add player icon / info to room display
