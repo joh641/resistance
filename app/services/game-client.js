@@ -7,7 +7,7 @@ export default class GameClient {
     this.players = [];
 
     db.once('value', snapshot => {
-      this.init(snapshot.val());
+      this.init(snapshot.val() || {});
       db.on('child_added', msg => this.handleEvent(msg.val()));
     });
   }
@@ -15,7 +15,9 @@ export default class GameClient {
   init(events) {
     this.READ_ONLY = true;
 
-    events.forEach(event => this.handleEvent(event));
+    Object.keys(events).forEach(key => {
+      this.handleEvent(events[key]);
+    });
     // READ_ONLY should be false for last event?
 
     this.READ_ONLY = false;
@@ -24,7 +26,7 @@ export default class GameClient {
   handleEvent({ name, data }) {
     const eventHandler = this[`on${name}`];
 
-    if (eventHandler) { eventHandler(data); }
+    if (eventHandler) { eventHandler.call(this, data); }
   }
 
   push(event) {
@@ -32,7 +34,7 @@ export default class GameClient {
   }
 
   signIn() {
-    let id = Number(document.cookie);
+    let id = Number(document.cookie || NaN);
 
     if (isNaN(id)) {
       document.cookie = id = this.id = this.players.length;
