@@ -74,8 +74,6 @@ export default class GameClient {
 
   onSpiesHeadsUp() {
     // todo: display spies heads up phase for a while
-    // remove
-    console.log('Spies heads up');
   }
 
   onLeaderChange({ id }) {
@@ -236,8 +234,16 @@ export default class GameClient {
     if (approved) {
       // todo: display approved message
       // todo: reset failed vote token
-      // todo: show mission cards facedown
       // todo: team tokens
+      this.team.forEach(id => {
+        const playerClass = `.player--${id}`;
+        const missionCardSelector = `${playerClass} .player__mission-card`;
+        const hidden = 'player__mission-card--hidden';
+
+        [].forEach.call(document.querySelectorAll(missionCardSelector), el => {
+          el.classList.remove(hidden);
+        });
+      });
     } else {
       // todo: display rejected message
       // todo: move failed vote token
@@ -250,9 +256,6 @@ export default class GameClient {
 
       this.team = [];
     }
-
-    // remove
-    console.dir({ approved });
 
     const revealedTokens = [];
     const faceDown = 'player__vote--face-down';
@@ -322,11 +325,48 @@ export default class GameClient {
   }
 
   onMissionResults({ success, missionCards }) {
-    // todo: display mission cards face up
-    // todo: display resistance/spy win token
-    // todo: hide face down mission cards
-    // remove
-    console.dir({ success, missionCards });
+    const els = [];
+    const message = document.querySelector('.message');
+
+    missionCards.forEach(success => {
+      const el = document.createElement('div');
+
+      el.classList.add('mission-card');
+
+      if (success) {
+        el.classList.add('mission-card--success');
+      } else {
+        el.classList.add('mission-card--fail');
+      }
+
+      message.appendChild(el);
+      els.push(el);
+    });
+
+    setTimeout(() => {
+      els.forEach(el => {
+        message.removeChild(el);
+      });
+    }, 10000);
+
+    const wins = document.querySelector('.wins');
+    const win = document.createElement('div');
+
+    win.classList.add('win');
+
+    if (success) {
+      win.classList.add('win--resistance');
+    } else {
+      win.classList.add('win--spy');
+    }
+
+    wins.appendChild(win);
+
+    const missionCardEls = document.querySelectorAll('.player__mission-card');
+
+    [].forEach.call(missionCardEls, missionCard => {
+      missionCard.classList.add('player__mission-card--hidden');
+    });
 
     const team = document.querySelectorAll('.player__icon--on-team');
 
@@ -354,6 +394,7 @@ export default class GameClient {
       const seat = document.querySelector(`.player--position-${position}`);
 
       seat.classList.add(playerClass);
+      seat.querySelector('.player__name').textContent = player.name;
       seat.querySelector('.player__icon').id = id;
     });
 
@@ -362,8 +403,6 @@ export default class GameClient {
 
   onGameOver({ winners, roles }) {
     // todo: display winners message
-    // remove
-    console.dir({ winners });
 
     this.players.forEach(player => {
       const id = player.id;

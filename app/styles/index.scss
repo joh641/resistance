@@ -14,6 +14,10 @@ body {
     display: inline-block;
   }
 
+  &__name {
+
+  }
+
   &__icon {
     border: solid;
     border-radius: 50%;
@@ -537,6 +541,62 @@ body {
           color: #fff;
           cursor: default;
         }
+      }
+    }
+  }
+}
+
+.display {
+  bottom: 0;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  width: 300px;
+
+  .message {
+    border: solid;
+    height: 150px;
+    width: 300px;
+
+    .mission-card {
+      display: inline-block;
+      height: 120px;
+      width: 80px;
+
+      &--success {
+        background-image: url('/mission--success.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &--fail {
+        background-image: url('/mission--fail.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  .wins {
+    border: solid;
+    height: 150px;
+    width: 300px;
+
+    .win {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+
+      &--resistance {
+        background-image: url('/win--resistance.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &--spy {
+        background-image: url('/win--spy.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
   }
