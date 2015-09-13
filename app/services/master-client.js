@@ -35,6 +35,7 @@ class MasterClient extends GameClient {
 
   endGame() {
     this.db.set([]);
+    this.push({ name: 'GameEnd' });
   }
 
   onTeamChosen({ team }) {

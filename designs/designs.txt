@@ -102,6 +102,8 @@ future: shared stream for some events, but clients also have a separate stream b
 gameroom stream
 user online status stream
 game state instead of playing back events
+game components <= html
+game dom belongs to instance of game, can end / start games without worrying about carry-over/pollution
 
 UI
 game lobby, watch games, chatroom/voice

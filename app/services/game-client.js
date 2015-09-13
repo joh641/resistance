@@ -1,3 +1,6 @@
+// todo: separate player sign in events from game instance events
+const USE_COOKIE = false;
+
 import Player from 'models/player';
 
 export default class GameClient {
@@ -37,7 +40,7 @@ export default class GameClient {
   signIn() {
     let id = Number(document.cookie || NaN);
 
-    if (isNaN(id)) {
+    if (isNaN(id) || !USE_COOKIE) {
       document.cookie = id = this.id = this.players.length + 1;
 
       this.push({
@@ -416,5 +419,145 @@ export default class GameClient {
       roleCard.classList.add(roleCardClass);
       roleCard.classList.remove(faceDown);
     });
+  }
+
+  onGameEnd() {
+    // l33t hacks, remove
+    document.querySelector('.game').outerHTML = `
+    <div class="game">
+      <div class="player player--position-1 player--current">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-2">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-3">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-4">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-5">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-6">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-7">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-8">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-9">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="player player--position-10">
+        <div class="player__name"></div>
+        <div class="player__icon"></div>
+        <div class="player__role player__role--face-down"></div>
+        <div class="player__vote player__vote--approve player__vote--face-down"></div>
+        <div class="player__vote player__vote--reject player__vote--face-down"></div>
+        <div class="player__leader-token player__leader-token--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+        <div class="player__mission-card player__mission-card--hidden"></div>
+      </div>
+      <div class="game__area">
+        <div class="game__table">
+          <div class="game__table__top">
+            <div class="game__table__top__display"></div>
+          </div>
+          <div class="game__table__middle">
+            <div class="game__table__middle__strip"></div>
+            <div class="game__board">
+              <div class="game__board__panel"></div>
+              <div class="game__board__results"></div>
+            </div>
+            <div class="display">
+              <div class="message"></div>
+              <div class="wins"></div>
+            </div>
+          </div>
+          <div class="game__table__bottom">
+            <div class="game__table__bottom__results"></div>
+          </div>
+        </div>
+        <div class="game__table__decision-panel">
+          <div class="team"></div>
+          <div class="vote-tokens">
+            <div class="vote-token vote-token--approve"></div>
+            <div class="vote-token vote-token--reject"></div>
+          </div>
+          <div class="mission-cards">
+            <div class="mission-card mission-card--success"></div>
+            <div class="mission-card mission-card--fail"></div>
+          </div>
+          <button class="submit" disabled="true">Submit</button>
+        </div>
+      </div>
+    </div>`.replace(/>\s+/g, '>');
   }
 }
