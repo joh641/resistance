@@ -352,6 +352,7 @@ body {
 
   &__board {
     border: solid;
+    display: inline-block;
     height: 358px;
     width: 484px;
 
@@ -409,6 +410,8 @@ body {
     }
 
     &__middle {
+      width: 790px;
+
       &__strip {
         display: none;
       }
@@ -547,10 +550,9 @@ body {
 }
 
 .display {
-  bottom: 0;
+  display: inline-block;
+  float: right;
   height: 300px;
-  position: absolute;
-  right: 0;
   width: 300px;
 
   .message {
