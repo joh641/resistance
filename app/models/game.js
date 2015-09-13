@@ -193,8 +193,8 @@ class Game {
   }
 
   calculateVotingResults() {
-    const threshold = Math.ceil(this.numPlayers / 2);
-    const approved = this.approveCount >= threshold;
+    const threshold = Math.floor(this.numPlayers / 2);
+    const approved = this.approveCount > threshold;
 
     this.push({
       name: 'VotingResults',
