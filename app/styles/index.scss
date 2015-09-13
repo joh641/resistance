@@ -1,99 +1,161 @@
+body {
+  font-family: Arial;
+}
+
 .screen {
 
 }
 
 .player {
-  &--position-1 {
+  display: none;
+  padding-right: 30px;
 
+  &--position-1 {
+    display: inline-block;
   }
 
   &__icon {
-    &--on-team {
+    border: solid;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
 
+    &--on-team {
+      border-color: #78A300 !important;
+      box-shadow: 0 0 1px #78A300 !important;
     }
 
     &--selected {
-
+      border-color: #78A300 !important;
+      box-shadow: 0 0 1px #78A300 !important;
     }
   }
 
   &__role {
+    display: inline-block;
+    height: 60px;
+    width: 40px;
+
     &--face-down {
-      background-image: url('/loyalty-card--face-down.jpg');
+      background-image: url('/loyalty-card--face-down.jpg') !important;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
 
     &--resistance {
       &--1 {
         background-image: url('/loyalty-card--resistance--1.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--2 {
         background-image: url('/loyalty-card--resistance--2.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--3 {
         background-image: url('/loyalty-card--resistance--3.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--4 {
         background-image: url('/loyalty-card--resistance--4.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--5 {
         background-image: url('/loyalty-card--resistance--5.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--6 {
         background-image: url('/loyalty-card--resistance--6.png');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
 
     &--spy {
       &--1 {
         background-image: url('/loyalty-card--spy--1.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--2 {
         background-image: url('/loyalty-card--spy--2.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--3 {
         background-image: url('/loyalty-card--spy--3.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       &--4 {
         background-image: url('/loyalty-card--spy--4.png');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
   }
 
   &__leader-token {
     background-image: url('/token--leader.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: 40px;
+    visibility: visible;
+    width: 40px;
 
     &--hidden {
-      background-image: none;
+      visibility: hidden;
     }
   }
 
   &__vote {
+    display: inline-block;
+    height: 60px;
+    width: 40px;
+
     &--face-down {
-      background-image: url('/vote--face-down.jpg');
+      background-image: url('/vote--face-down.jpg') !important;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
 
     &--approve {
       background-image: url('/vote--approve.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
     }
 
     &--reject {
       background-image: url('/vote--reject.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
 
   &__mission-card {
     background-image: url('/mission--face-down.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    height: 60px;
+    visibility: visible;
+    width: 40px;
 
     &--hidden {
-      background-image: none;
+      visibility: hidden;
     }
   }
 }
@@ -102,19 +164,19 @@
   &--5-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
     }
   }
@@ -122,23 +184,23 @@
   &--6-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
 
       &--position-6 {
-
+        display: inline-block;
       }
     }
   }
@@ -146,27 +208,27 @@
   &--7-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
 
       &--position-6 {
-
+        display: inline-block;
       }
 
       &--position-7 {
-
+        display: inline-block;
       }
     }
   }
@@ -174,31 +236,31 @@
   &--8-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
 
       &--position-6 {
-
+        display: inline-block;
       }
 
       &--position-7 {
-
+        display: inline-block;
       }
 
       &--position-8 {
-
+        display: inline-block;
       }
     }
   }
@@ -206,35 +268,35 @@
   &--9-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
 
       &--position-6 {
-
+        display: inline-block;
       }
 
       &--position-7 {
-
+        display: inline-block;
       }
 
       &--position-8 {
-
+        display: inline-block;
       }
 
       &--position-9 {
-
+        display: inline-block;
       }
     }
   }
@@ -242,50 +304,92 @@
   &--10-players {
     .player {
       &--position-2 {
-
+        display: inline-block;
       }
 
       &--position-3 {
-
+        display: inline-block;
       }
 
       &--position-4 {
-
+        display: inline-block;
       }
 
       &--position-5 {
-
+        display: inline-block;
       }
 
       &--position-6 {
-
+        display: inline-block;
       }
 
       &--position-7 {
-
+        display: inline-block;
       }
 
       &--position-8 {
-
+        display: inline-block;
       }
 
       &--position-9 {
-
+        display: inline-block;
       }
 
       &--position-10 {
-
+        display: inline-block;
       }
     }
   }
 
   &__area {
-
+    height: 800px;
+    width: 484px;
   }
 
   &__board {
-    &__panel {
+    border: solid;
+    height: 358px;
+    width: 484px;
 
+    &__panel {
+      height: 360px;
+      width: 484px;
+
+      .game--5-players & {
+        background-image: url('/missions--5.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .game--6-players & {
+        background-image: url('/missions--6.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .game--7-players & {
+        background-image: url('/missions--7.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .game--8-players & {
+        background-image: url('/missions--8.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .game--9-players & {
+        background-image: url('/missions--9.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .game--10-players & {
+        background-image: url('/missions--10.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
     }
 
     &__results {
@@ -296,83 +400,143 @@
   &__table {
     &__top {
       &__display {
-
+        display: none;
       }
     }
 
     &__middle {
       &__strip {
-
+        display: none;
       }
     }
 
     &__bottom {
       &__results {
-
+        display: none;
       }
     }
 
     &__decision-panel {
-      &--open {
+      border: solid;
+      display: none;
+      height: 160px;
+      width: 484px;
 
+      &--open {
+        display: block;
       }
 
       &--team {
         .team {
-
+          display: block !important;
         }
       }
 
       .team {
-
+        display: none;
       }
 
       &--vote {
         .vote-tokens {
+          display: block !important;
 
+          .vote-token {
+            display: inline-block;
+          }
         }
       }
 
       .vote-tokens {
+        display: none;
+
         .vote-token {
+          height: 100px;
+          opacity: 0.5;
+          width: 65px;
+
           &--approve {
             background-image: url('/vote--approve.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
           }
 
           &--reject {
             background-image: url('/vote--reject.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
           }
 
           &--selected {
-
+            opacity: 1;
           }
         }
       }
 
       &--mission {
         .mission-cards {
+          display: block !important;
 
+          .mission-card {
+            display: inline-block;
+          }
         }
       }
 
       .mission-cards {
+        display: none;
+
         .mission-card {
+          height: 120px;
+          opacity: 0.5;
+          width: 80px;
+
           &--success {
             background-image: url('/mission--success.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
           }
 
           &--fail {
             background-image: url('/mission--fail.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
           }
 
           &--selected {
-
+            opacity: 1;
           }
         }
       }
 
       .submit {
+        background-color: #333;
+        border: 1px solid;
+        border-color: #333;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.92308rem;
+        font-weight: 600;
+        line-height: 1;
+        margin: 0;
+        margin-right: 12px;
+        min-width: 80px;
+        font: inherit;
+        overflow: visible;
+        padding: 9px 19px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        vertical-align: middle;
 
+        &[disabled] {
+          border-color: #ddd;
+          background-color: #ddd;
+          color: #fff;
+          cursor: default;
+        }
       }
     }
   }
