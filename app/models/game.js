@@ -132,7 +132,7 @@ class Game {
       this.push({
         name: 'SetRole',
         data: {
-          id: idx,
+          id: player.id,
           role,
           imageNumber
         }
