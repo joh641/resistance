@@ -241,10 +241,11 @@ class Game {
   }
 
   calculateMissionResults() {
-    let numFails = this.mission.fails;
-    let numSuccesses = this.mission.players - numFails;
+    const { players, fails } = this.mission;
+    let numFails = this.failCount;
+    let numSuccesses = players - numFails;
     let missionCards = [];
-    const success = this.failCount < numFails;
+    const success = numFails < fails;
 
     while (numFails-- > 0) {
       missionCards.push(0);
