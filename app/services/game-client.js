@@ -328,12 +328,12 @@ export default class GameClient {
     const els = [];
     const message = document.querySelector('.message');
 
-    missionCards.forEach(success => {
+    missionCards.forEach(successCard => {
       const el = document.createElement('div');
 
       el.classList.add('mission-card');
 
-      if (success) {
+      if (successCard) {
         el.classList.add('mission-card--success');
       } else {
         el.classList.add('mission-card--fail');
