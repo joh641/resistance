@@ -262,6 +262,7 @@ https://github.com/cashto/resistance
           </div>
         </div>
         <div class="game__table__decision-panel">
+          <div class="team"></div>
           <div class="vote-tokens">
             <div class="vote-token vote-token--accept"></div>
             <div class="vote-token vote-token--reject"></div>
@@ -587,6 +588,16 @@ https://github.com/cashto/resistance
 
     &__decision-panel {
       &--open {
+
+      }
+
+      &--team {
+        .team {
+
+        }
+      }
+
+      .team {
 
       }
 
