@@ -20,6 +20,7 @@ body {
 
   &__icon {
     border: solid;
+    box-sizing: border-box;
     border-radius: 50%;
     height: 60px;
     width: 60px;
@@ -352,13 +353,14 @@ body {
 
   &__board {
     border: solid;
+    box-sizing: border-box;
     display: inline-block;
-    height: 358px;
+    height: 360px;
     width: 484px;
 
     &__panel {
-      height: 360px;
-      width: 484px;
+      height: 354px;
+      width: 479px;
 
       .game--5-players & {
         background-image: url('/missions--5.jpg');
@@ -403,6 +405,8 @@ body {
   }
 
   &__table {
+    height: 360px;
+
     &__top {
       &__display {
         display: none;
@@ -410,6 +414,7 @@ body {
     }
 
     &__middle {
+      height: 360px;
       width: 790px;
 
       &__strip {
@@ -425,6 +430,7 @@ body {
 
     &__decision-panel {
       border: solid;
+      box-sizing: border-box;
       display: none;
       height: 160px;
       width: 484px;
@@ -493,7 +499,7 @@ body {
         display: none;
 
         .mission-card {
-          height: 120px;
+          height: 100px;
           opacity: 0.5;
           width: 80px;
 
@@ -557,6 +563,7 @@ body {
 
   .message {
     border: solid;
+    box-sizing: border-box;
     height: 150px;
     width: 300px;
 
@@ -581,6 +588,7 @@ body {
 
   .wins {
     border: solid;
+    box-sizing: border-box;
     height: 150px;
     width: 300px;
 
