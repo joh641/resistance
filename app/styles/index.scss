@@ -415,7 +415,7 @@ body {
 
     &__middle {
       height: 360px;
-      width: 790px;
+      width: 749px;
 
       &__strip {
         display: none;
@@ -559,13 +559,13 @@ body {
   display: inline-block;
   float: right;
   height: 300px;
-  width: 300px;
+  width: 260px;
 
   .message {
     border: solid;
     box-sizing: border-box;
-    height: 150px;
-    width: 300px;
+    height: 250px;
+    width: 260px;
 
     .mission-card {
       display: inline-block;
@@ -589,8 +589,8 @@ body {
   .wins {
     border: solid;
     box-sizing: border-box;
-    height: 150px;
-    width: 300px;
+    height: 50px;
+    width: 260px;
 
     .win {
       display: inline-block;
