@@ -139,7 +139,7 @@ class Game {
       });
     });
 
-    this.push({ name: 'SpiesReveal' });
+    this.push({ name: 'SpiesHeadsUp' });
   }
 
   setLeader(position) {

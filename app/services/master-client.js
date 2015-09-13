@@ -13,14 +13,22 @@ class MasterClient extends GameClient {
   }
 
   startGame(leaderPosition) {
-    const numPlayers = this.game.players.length;
+    const players = this.game.players;
+    const numPlayers = players.length;
     const leader = Number(leaderPosition);
     const isNum = isNaN(leader);
     const position = isNum ? leader : Math.floor(Math.random() * numPlayers);
 
     this.push({
       name: 'GameStart',
-      data: { numPlayers }
+      data: {
+        players,
+        positions: players.reduce((positions, idx) => {
+          positions[players[idx].id] = idx;
+
+          return positions;
+        }, {})
+      }
     });
     this.game.start(position);
   }
@@ -30,13 +38,13 @@ class MasterClient extends GameClient {
   }
 
   onTeamChosen({ team }) {
-    super.onTeamChosen(arguments);
+    super.onTeamChosen(...arguments);
     this.game.setTeam(team);
     this.push({ name: 'TeamVote' });
   }
 
   onVote({ accept }) {
-    super.onVote(arguments);
+    super.onVote(...arguments);
     this.game.recordVote(accept);
   }
 
