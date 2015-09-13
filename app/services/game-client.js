@@ -113,6 +113,8 @@ export default class GameClient {
         selected[target.id] = false;
         teamCount--;
       } else {
+        if (teamCount === numPlayers) { return; }
+
         target.classList.add('player__icon--selected');
         selected[target.id] = true;
         teamCount++;
@@ -152,6 +154,12 @@ export default class GameClient {
             return team;
           }, [])
         }
+      });
+
+      const selected = document.querySelectorAll('.player__icon--selected');
+
+      [].forEach.call(selected, icon => {
+        icon.classList.remove('player__icon--selected');
       });
     };
 
@@ -339,14 +347,14 @@ export default class GameClient {
     players.forEach((player, idx) => {
       let position = idx - offset + 1;
 
-      if (position < 0) { position += numPlayers; }
+      if (position < 1) { position += numPlayers; }
 
       const id = player.id;
       const playerClass = `player--${id}`;
-      const ply = document.querySelector(`.player--position-${position}`);
+      const seat = document.querySelector(`.player--position-${position}`);
 
-      ply.classList.add(playerClass);
-      ply.querySelector('.player__icon').id = id;
+      seat.classList.add(playerClass);
+      seat.querySelector('.player__icon').id = id;
     });
 
     document.querySelector('.game').classList.add(gameClass);
