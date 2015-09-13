@@ -43,9 +43,9 @@ class MasterClient extends GameClient {
     this.push({ name: 'TeamVote' });
   }
 
-  onVote({ accept }) {
+  onVote({ approve }) {
     super.onVote(...arguments);
-    this.game.recordVote(accept);
+    this.game.recordVote(approve);
   }
 
   onMissionCardChosen({ success }) {

@@ -177,7 +177,7 @@ export default class GameClient {
 
     const panel = document.querySelector('.game__table__decision-panel');
     const submit = document.querySelector('.submit');
-    const acceptToken = document.querySelector('.vote-token--accept');
+    const approveToken = document.querySelector('.vote-token--approve');
     const rejectToken = document.querySelector('.vote-token--reject');
     const onClick = e => {
       const prev = document.querySelector('.vote-token--selected');
@@ -191,7 +191,7 @@ export default class GameClient {
       submit.removeAttribute('disabled');
     };
 
-    acceptToken.addEventListener('click', onClick, false);
+    approveToken.addEventListener('click', onClick, false);
     rejectToken.addEventListener('click', onClick, false);
 
     panel.classList.add('game__table__decision-panel--open');
@@ -199,7 +199,7 @@ export default class GameClient {
 
     const onSubmit = () => {
       submit.removeEventListener('click', onSubmit, false);
-      acceptToken.removeEventListener('click', onClick, false);
+      approveToken.removeEventListener('click', onClick, false);
       rejectToken.removeEventListener('click', onClick, false);
 
       panel.classList.remove('game__table__decision-panel--open');
@@ -207,13 +207,13 @@ export default class GameClient {
       submit.setAttribute('disabled', 'true');
 
       const selected = document.querySelector('.vote-token--selected');
-      const accept = selected.classList.contains('vote-token--accept');
+      const approve = selected.classList.contains('vote-token--approve');
 
       selected.classList.remove('vote-token--selected');
 
       this.push({
         name: 'Vote',
-        data: { accept, id: this.id }
+        data: { approve, id: this.id }
       });
     };
 
@@ -224,11 +224,12 @@ export default class GameClient {
     this.votes.push(data);
   }
 
-  onVotingResults({ accepted }) {
-    if (accepted) {
-      // todo: display accepted message
+  onVotingResults({ approved }) {
+    if (approved) {
+      // todo: display approved message
       // todo: reset failed vote token
       // todo: show mission cards facedown
+      // todo: team tokens
     } else {
       // todo: display rejected message
       // todo: move failed vote token
@@ -243,14 +244,14 @@ export default class GameClient {
     }
 
     // remove
-    console.dir({ accepted });
+    console.dir({ approved });
 
     const revealedTokens = [];
     const faceDown = 'player__vote--face-down';
 
     this.votes.forEach(vote => {
       const player = `.player--${vote.id}`;
-      const token = `.player__vote--${vote.accept ? 'accept' : 'reject'}`;
+      const token = `.player__vote--${vote.approve ? 'approve' : 'reject'}`;
       const selected = document.querySelector(`${player} ${token}`);
 
       selected.classList.remove(faceDown);

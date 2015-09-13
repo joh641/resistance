@@ -19,77 +19,81 @@
 
   &__role {
     &--face-down {
-
+      background-image: url('/loyalty-card--face-down.jpg');
     }
 
     &--resistance {
       &--1 {
-
+        background-image: url('/loyalty-card--resistance--1.jpg');
       }
 
       &--2 {
-
+        background-image: url('/loyalty-card--resistance--2.jpg');
       }
 
       &--3 {
-
+        background-image: url('/loyalty-card--resistance--3.jpg');
       }
 
       &--4 {
-
+        background-image: url('/loyalty-card--resistance--4.jpg');
       }
 
       &--5 {
-
+        background-image: url('/loyalty-card--resistance--5.jpg');
       }
 
       &--6 {
-
+        background-image: url('/loyalty-card--resistance--6.png');
       }
     }
 
     &--spy {
       &--1 {
-
+        background-image: url('/loyalty-card--spy--1.jpg');
       }
 
       &--2 {
-
+        background-image: url('/loyalty-card--spy--2.jpg');
       }
 
       &--3 {
-
+        background-image: url('/loyalty-card--spy--3.jpg');
       }
 
       &--4 {
-
+        background-image: url('/loyalty-card--spy--4.png');
       }
     }
   }
 
   &__leader-token {
-    &--hidden {
+    background-image: url('/token--leader.jpg');
 
+    &--hidden {
+      background-image: none;
     }
   }
 
   &__vote {
     &--face-down {
-
+      background-image: url('/vote--face-down.jpg');
     }
 
-    &--accept {
-
+    &--approve {
+      background-image: url('/vote--approve.jpg');
     }
 
     &--reject {
-
+      background-image: url('/vote--reject.jpg');
     }
   }
 
   &__mission-card {
-    &--hidden {
+    background-image: url('/mission--face-down.jpg');
 
+    &--hidden {
+      background-image: none;
     }
   }
 }
@@ -331,12 +335,12 @@
 
       .vote-tokens {
         .vote-token {
-          &--accept {
-
+          &--approve {
+            background-image: url('/vote--approve.jpg');
           }
 
           &--reject {
-
+            background-image: url('/vote--reject.jpg');
           }
 
           &--selected {
@@ -354,11 +358,11 @@
       .mission-cards {
         .mission-card {
           &--success {
-
+            background-image: url('/mission--success.jpg');
           }
 
           &--fail {
-
+            background-image: url('/mission--fail.jpg');
           }
 
           &--selected {

@@ -60,7 +60,7 @@ module.exports = {
         ].join('!'))
       },
       {
-        test: /\.(gif|svg|woff|woff2)$/,
+        test: /\.(gif|jpg|png|svg|woff|woff2)$/,
         loader: 'url-loader'
       }
     ]

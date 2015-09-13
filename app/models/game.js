@@ -160,7 +160,7 @@ class Game {
   }
 
   enterTeamBuildingPhase() {
-    this.receivedVotes = this.acceptCount = 0;
+    this.receivedVotes = this.approveCount = 0;
 
     this.push({
       name: 'BuildTeam',
@@ -180,11 +180,11 @@ class Game {
     players.forEach(id => team[id] = true);
   }
 
-  recordVote(accept) {
+  recordVote(approve) {
     const voteCount = this.receivedVotes += 1;
 
-    if (accept) {
-      this.acceptCount += 1;
+    if (approve) {
+      this.approveCount += 1;
     }
 
     if (voteCount === this.numPlayers) {
@@ -194,14 +194,14 @@ class Game {
 
   calculateVotingResults() {
     const threshold = Math.ceil(this.numPlayers / 2);
-    const accepted = this.acceptCount >= threshold;
+    const approved = this.approveCount >= threshold;
 
     this.push({
       name: 'VotingResults',
-      data: { accepted }
+      data: { approved }
     });
 
-    if (accepted) {
+    if (approved) {
       this.push({
         name: 'ConductMission',
         data: { team: this.team }
