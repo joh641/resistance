@@ -22,8 +22,8 @@ body {
     border: solid;
     box-sizing: border-box;
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
 
     &--on-team {
       border-color: #78A300 !important;
@@ -432,7 +432,7 @@ body {
       border: solid;
       box-sizing: border-box;
       display: none;
-      height: 160px;
+      height: 150px;
       width: 484px;
 
       &--open {
