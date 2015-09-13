@@ -156,9 +156,9 @@ export default class GameClient {
         }
       });
 
-      const selected = document.querySelectorAll('.player__icon--selected');
+      const chosen = document.querySelectorAll('.player__icon--selected');
 
-      [].forEach.call(selected, icon => {
+      [].forEach.call(chosen, icon => {
         icon.classList.remove('player__icon--selected');
       });
     };
