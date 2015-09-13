@@ -16,15 +16,15 @@ class MasterClient extends GameClient {
     const players = this.game.players;
     const numPlayers = players.length;
     const leader = Number(leaderPosition);
-    const isNum = isNaN(leader);
+    const isNum = !isNaN(leader);
     const position = isNum ? leader : Math.floor(Math.random() * numPlayers);
 
     this.push({
       name: 'GameStart',
       data: {
         players,
-        positions: players.reduce((positions, idx) => {
-          positions[players[idx].id] = idx;
+        positions: players.reduce((positions, player, idx) => {
+          positions[player.id] = idx;
 
           return positions;
         }, {})
