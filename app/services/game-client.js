@@ -408,6 +408,8 @@ export default class GameClient {
     const gameClass = `game--${numPlayers}-players`;
     const offset = positions[this.id];
 
+    this.gamePlayers = players;
+
     players.forEach((player, idx) => {
       let position = idx - offset + 1;
 
@@ -428,7 +430,7 @@ export default class GameClient {
   onGameOver({ winners, roles }) {
     // todo: display winners message
 
-    this.players.forEach(player => {
+    this.gamePlayers.forEach(player => {
       const id = player.id;
       const { role, imageNumber } = roles[id];
       const roleClass = `player__role--${role}`;
@@ -580,6 +582,8 @@ export default class GameClient {
         </div>
       </div>
     </div>`.replace(/>\s+/g, '>');
+
+    this.gamePlayers = [];
   }
 
   onChatMessage({ name, message }) {
