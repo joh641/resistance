@@ -43,16 +43,37 @@ export default class GameClient {
     if (isNaN(id) || !USE_COOKIE) {
       document.cookie = id = this.id = this.players.length + 1;
 
+      const name = this.name = prompt('Please enter your name');
+
       this.push({
         name: 'PlayerSignIn',
         data: {
           id,
-          name: prompt('Please enter your name')
+          name
         }
       });
     } else {
       this.id = id;
     }
+
+    const chatInput = document.querySelector('.chat__input');
+    const onKeyPress = e => {
+      const { keyCode, target } = e;
+
+      if (keyCode !== 13) { return; }
+
+      this.push({
+        name: 'ChatMessage',
+        data: {
+          name: this.name,
+          message: target.value
+        }
+      });
+
+      target.value = '';
+    };
+
+    chatInput.addEventListener('keypress', onKeyPress, false);
   }
 
   onPlayerSignIn({ id, name }) {
@@ -559,5 +580,20 @@ export default class GameClient {
         </div>
       </div>
     </div>`.replace(/>\s+/g, '>');
+  }
+
+  onChatMessage({ name, message }) {
+    const nameEl = document.createElement('strong');
+    const messageEl = document.createElement('li');
+    const chatHistory = document.querySelector('.chat__history');
+
+    nameEl.classList.add('chat__message__name');
+    nameEl.textContent = `${name}: `;
+    messageEl.classList.add('chat__message');
+    messageEl.textContent = message;
+    messageEl.insertBefore(nameEl, messageEl.firstChild);
+
+    chatHistory.appendChild(messageEl);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
   }
 }

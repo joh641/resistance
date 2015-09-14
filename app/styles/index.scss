@@ -612,6 +612,34 @@ body {
   }
 }
 
-.chat-panel {
+.chat {
+  border-left: solid;
+  border-top: solid;
+  bottom: 0;
+  box-sizing: border-box;
+  height: 60%;
+  position: fixed;
+  right: 0;
+  width: 300px;
 
+  &__history {
+    height: 80%;
+    list-style: none;
+    overflow-y: scroll;
+    padding-left: 10px;
+  }
+
+  &__message {
+    &__name {
+
+    }
+  }
+
+  &__input {
+    border-top: solid;
+    bottom: 0;
+    height: 30px;
+    position: fixed;
+    width: 100%;
+  }
 }
