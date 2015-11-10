@@ -8,8 +8,8 @@ class MasterClient extends GameClient {
     this.game = null;
   }
 
-  createGame(players) {
-    this.game = new Game(this, players);
+  createGame(players, variant = null) {
+    this.game = new Game(this, players, variant);
   }
 
   startGame(leaderPosition) {

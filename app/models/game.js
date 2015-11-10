@@ -58,12 +58,13 @@ const GAMES = {
 };
 
 class Game {
-  constructor(client, players) {
+  constructor(client, players, variant) {
     const numPlayers = this.numPlayers = players.length;
 
     this.client = client;
     this.players = players;
     this.schema = GAMES[numPlayers];
+    this.variant = variant;
   }
 
   get gameOver() {
@@ -140,6 +141,28 @@ class Game {
     });
 
     this.push({ name: 'SpiesHeadsUp' });
+
+    if (this.variant === 'avalon') {
+      this.assignMerlin();
+    }
+  }
+
+  assignMerlin() {
+    const { players, numPlayers } = this;
+
+    let player = players[Math.floor(Math.random() * numPlayers)];
+
+    while (player.role !== 'resistance') {
+      player = players[Math.floor(Math.random() * numPlayers)];
+    }
+
+    this.push({
+      name: 'SetMerlin',
+      data: {
+        id: player.id,
+        roles: this.roles
+      }
+    });
   }
 
   setLeader(position) {

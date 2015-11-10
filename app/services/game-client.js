@@ -100,6 +100,23 @@ export default class GameClient {
     // todo: display spies heads up phase for a while
   }
 
+  onSetMerlin({ id, roles }) {
+    if (id !== this.id) { return; }
+
+    this.gamePlayers.forEach(player => {
+      const id = player.id;
+      const { role, imageNumber } = roles[id];
+      const roleClass = `player__role--${role}`;
+      const roleCardClass = `${roleClass}--${imageNumber}`;
+      const roleCard = document.querySelector(`.player--${id} .player__role`);
+      const faceDown = 'player__role--face-down';
+
+      roleCard.classList.add(roleClass);
+      roleCard.classList.add(roleCardClass);
+      roleCard.classList.remove(faceDown);
+    });
+  }
+
   onLeaderChange({ id }) {
     const oldLeader = this.leader;
     const token = '.player__leader-token';
